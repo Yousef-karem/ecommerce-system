@@ -39,6 +39,9 @@ It simulates a minimal e-commerce system with cart management, checkout processi
   - **Strategy Pattern** (used for shipping fee calculation)
 
 ---
+## UML Class Diagram
+
+[UML Diagram](docs/UML.png)
 
 ##  Project Structure
 src/
@@ -73,3 +76,4 @@ Remaining Balance 570
 ## Running Tests
 
 Make sure you have JUnit 5 configured.
+
