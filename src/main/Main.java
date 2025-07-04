@@ -1,6 +1,7 @@
-import model.*;
-import checkout.*;
-import shipping.*;
+package src.main;
+
+import src.main.java.model.*;
+import src.main.java.checkout.*;
 
 import java.time.LocalDate;
 

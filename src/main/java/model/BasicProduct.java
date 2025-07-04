@@ -1,4 +1,4 @@
-package model;
+package src.main.java.model;
 
 public class BasicProduct extends Product{
     public BasicProduct(String name, double price, int quantity) {

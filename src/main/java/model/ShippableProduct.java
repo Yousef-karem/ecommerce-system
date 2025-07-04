@@ -1,6 +1,6 @@
-package model;
+package src.main.java.model;
 
-import shipping.Shippable;
+import src.main.java.shipping.Shippable;
 
 public class ShippableProduct extends Product implements Shippable {
     private double weight;

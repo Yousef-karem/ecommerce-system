@@ -1,6 +1,6 @@
-package model;
+package src.main.java.model;
 
-import shipping.Shippable;
+import src.main.java.shipping.Shippable;
 
 import java.time.LocalDate;
 

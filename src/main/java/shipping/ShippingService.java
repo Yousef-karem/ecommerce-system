@@ -1,4 +1,4 @@
-package shipping;
+package src.main.java.shipping;
 
 import java.util.LinkedHashMap;
 import java.util.List;

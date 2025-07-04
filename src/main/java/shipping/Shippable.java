@@ -1,4 +1,4 @@
-package shipping;
+package src.main.java.shipping;
 
 public interface Shippable {
     double getWeight();

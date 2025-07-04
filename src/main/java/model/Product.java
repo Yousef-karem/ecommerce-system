@@ -1,4 +1,4 @@
-package model;
+package src.main.java.model;
 
 public abstract class Product {
     String name;

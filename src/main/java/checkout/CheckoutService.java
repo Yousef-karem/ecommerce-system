@@ -1,8 +1,8 @@
-package checkout;
+package src.main.java.checkout;
 
-import model.*;
-import shipping.Shippable;
-import shipping.ShippingService;
+import src.main.java.model.*;
+import src.main.java.shipping.Shippable;
+import src.main.java.shipping.ShippingService;
 
 import java.util.ArrayList;
 import java.util.List;
