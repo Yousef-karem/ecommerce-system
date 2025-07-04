@@ -43,14 +43,14 @@ It simulates a minimal e-commerce system with cart management, checkout processi
 ##  Project Structure
 src/
 ├── main/
-│ ├── model/ # Product, Customer, Cart, CartItem
-│ ├── shipping/ # Shippable interface and ShippingService
-│ ├── checkout/ # CheckoutService and ShippingFeeStrategy
-│ └── Main.java # Entry point with demo scenarios
+│ ├── model/  Product, Customer, Cart, CartItem
+│ ├── shipping/  Shippable interface and ShippingService
+│ ├── checkout/  CheckoutService and ShippingFeeStrategy
+│ └── Main.java  Entry point with demo scenarios
 └── test/
-├── model/ # JUnit tests for model classes
-├── checkout/ # Tests for checkout logic and strategy
-└── shipping/ # Tests for shipping fee strategies  
+├── model/ JUnit tests for model classes
+├── checkout/ Tests for checkout logic and strategy
+└── shipping/ Tests for shipping fee strategies  
 ## Example Output
 
 ** Shipment notice **
