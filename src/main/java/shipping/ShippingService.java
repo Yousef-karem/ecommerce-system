@@ -22,14 +22,14 @@ public class ShippingService {
 
         double totalWeight = 0;
 
-        // First line: 2x Cheese, 1x Biscuits
+        // 2x Cheese, 1x Biscuits
         for (String key : counts.keySet()) {
             String[] parts = key.split("\\|");
             String name = parts[0];
             System.out.printf("%dx %-12s%n", counts.get(key), name);
         }
 
-        // Second line: weights in grams
+        //weights in grams
         for (String key : counts.keySet()) {
             double weight = weights.get(key);
             int count = counts.get(key);
