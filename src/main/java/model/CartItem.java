@@ -5,6 +5,9 @@ public class CartItem {
     private int quantity;
 
     public CartItem(Product product, int quantity) {
+        if (quantity <= 0 || quantity > product.getQuantity()) {
+            throw new IllegalArgumentException("Invalid quantity for product: " + product.getName());
+        }
         this.product = product;
         this.quantity = quantity;
     }
