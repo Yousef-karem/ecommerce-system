@@ -2,6 +2,7 @@ package src.main.java.checkout;
 
 import src.main.java.model.*;
 import src.main.java.shipping.Shippable;
+import src.main.java.shipping.ShippingFeeStrategy;
 import src.main.java.shipping.ShippingService;
 
 import java.util.ArrayList;

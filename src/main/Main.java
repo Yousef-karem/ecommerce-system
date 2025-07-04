@@ -2,6 +2,7 @@ package src.main;
 
 import src.main.java.model.*;
 import src.main.java.checkout.*;
+import src.main.java.shipping.FlatRateShippingFee;
 
 import java.time.LocalDate;
 
