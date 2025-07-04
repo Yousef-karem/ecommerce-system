@@ -41,7 +41,7 @@ It simulates a minimal e-commerce system with cart management, checkout processi
 ---
 ## UML Class Diagram
 
-[UML Diagram](docs/UML.png)
+[UML Diagram](UML.png)
 
 ##  Project Structure
 src/
