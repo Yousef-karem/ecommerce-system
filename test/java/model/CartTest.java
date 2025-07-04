@@ -1,6 +1,9 @@
-package src.main.java.model;
+package test.java.model;
 
 import org.junit.jupiter.api.Test;
+import src.main.java.model.BasicProduct;
+import src.main.java.model.Cart;
+import src.main.java.model.Product;
 
 import static org.junit.jupiter.api.Assertions.*;
 
