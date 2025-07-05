@@ -1,9 +1,13 @@
 package test.java.checkout;
 
 import src.main.java.checkout.CheckoutService;
+import src.main.java.expiring.ExpiresOnDate;
+import src.main.java.expiring.NeverExpires;
 import src.main.java.model.*;
 import org.junit.jupiter.api.Test;
 import src.main.java.shipping.FlatRateShippingFee;
+import src.main.java.shipping.NoShippingBehavior;
+import src.main.java.shipping.WeightBasedShippingBehavior;
 
 import java.time.LocalDate;
 
@@ -13,8 +17,12 @@ public class CheckoutServiceTest {
 
     @Test
     void shouldSuccessfullyCheckoutWithValidItems() {
-        Product cheese = new ShippableExpirableProduct("Cheese", 100, 5, LocalDate.now().plusDays(2), 0.2);
-        Product card = new BasicProduct("ScratchCard", 50, 10);
+        Product cheese = new Product("Cheese", 100, 5
+                ,new ExpiresOnDate(LocalDate.now().plusDays(2))
+                ,new WeightBasedShippingBehavior("Cheese",0.2));
+        Product card = new Product("ScratchCard", 50, 10
+                ,new NeverExpires()
+                ,new NoShippingBehavior());
         Customer customer = new Customer("John", 1000);
         Cart cart = new Cart();
 
@@ -29,7 +37,9 @@ public class CheckoutServiceTest {
 
     @Test
     void shouldThrowWhenProductIsExpired() {
-        Product expired = new ShippableExpirableProduct("Milk", 80, 3, LocalDate.now().minusDays(1), 0.5);
+        Product expired = new Product("Milk", 80, 3
+                , new ExpiresOnDate(LocalDate.now().minusDays(1))
+                ,new WeightBasedShippingBehavior("Milk",0.5));
         Customer customer = new Customer("Tom", 500);
         Cart cart = new Cart();
         cart.add(expired, 1);
@@ -42,7 +52,9 @@ public class CheckoutServiceTest {
 
     @Test
     void shouldThrowWhenCustomerBalanceIsInsufficient() {
-        Product tv = new ShippableProduct("TV", 700, 2, 10.0);
+        Product tv = new Product("TV", 700, 2
+                ,new NeverExpires()
+                ,new WeightBasedShippingBehavior( "TV",10.0));
         Customer customer = new Customer("LowBalance", 100);
         Cart cart = new Cart();
         cart.add(tv, 1);
@@ -66,7 +78,9 @@ public class CheckoutServiceTest {
 
     @Test
     void shouldThrowWhenQuantityExceedsAvailableStock() {
-        Product p = new BasicProduct("ScratchCard", 50, 2);
+        Product p = new Product("ScratchCard", 50, 2,
+                new NeverExpires(),
+                new NoShippingBehavior());
         Customer customer = new Customer("OverLimitUser", 1000);
         Cart cart = new Cart();
         cart.add(p, 2);

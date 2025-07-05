@@ -1,8 +1,12 @@
 package src.main;
 
+import src.main.java.expiring.ExpiresOnDate;
+import src.main.java.expiring.NeverExpires;
 import src.main.java.model.*;
 import src.main.java.checkout.*;
 import src.main.java.shipping.FlatRateShippingFee;
+import src.main.java.shipping.NoShippingBehavior;
+import src.main.java.shipping.WeightBasedShippingBehavior;
 
 import java.time.LocalDate;
 
@@ -15,9 +19,15 @@ public class Main {
             Customer customer = new Customer("Ahmed", 1000);
             Cart cart = new Cart();
 
-            Product cheese = new ShippableExpirableProduct("Cheese", 100, 5, LocalDate.now().plusDays(2), 0.2);
-            Product biscuits = new ShippableExpirableProduct("Biscuits", 150, 3, LocalDate.now().plusDays(5), 0.7);
-            Product scratchCard = new BasicProduct("ScratchCard", 50, 10);
+            // create ShippableExpirableProduct
+            Product cheese = new Product("Cheese", 100, 5,
+                    new ExpiresOnDate( LocalDate.now().plusDays(2)),
+                    new WeightBasedShippingBehavior("Cheese",0.2));
+            Product biscuits = new Product("Biscuits", 150, 3,
+                    new ExpiresOnDate(LocalDate.now().plusDays(5)),
+                    new WeightBasedShippingBehavior("Biscuits",0.7));
+
+            Product scratchCard = new Product("ScratchCard", 50, 10,new NeverExpires(),new NoShippingBehavior());
 
             cart.add(cheese, 2);
             cart.add(biscuits, 1);
@@ -47,7 +57,9 @@ public class Main {
             Customer customer = new Customer("Ahmed", 500);
             Cart cart = new Cart();
 
-            Product expired = new ShippableExpirableProduct("Old Cheese", 120, 5, LocalDate.now().minusDays(1), 0.3);
+            Product expired = new Product("Old Cheese", 120, 5,
+                    new ExpiresOnDate( LocalDate.now().minusDays(1)),
+                    new WeightBasedShippingBehavior("Old Cheese",0.3));
             cart.add(expired, 1);
 
             CheckoutService service = new CheckoutService(new FlatRateShippingFee());
@@ -62,7 +74,9 @@ public class Main {
             Customer customer = new Customer("Mohamed", 100);
             Cart cart = new Cart();
 
-            Product tv = new ShippableProduct("TV", 500, 1, 10.0);
+            Product tv = new Product("TV", 500, 1,
+                    new NeverExpires(),
+                    new WeightBasedShippingBehavior("TV",10.0) );
             cart.add(tv, 1);
 
             CheckoutService service = new CheckoutService(new FlatRateShippingFee());
@@ -77,7 +91,9 @@ public class Main {
             Customer customer = new Customer("Ramy", 1000);
             Cart cart = new Cart();
 
-            Product scratchCard = new BasicProduct("ScratchCard", 50, 2);
+            Product scratchCard = new Product("ScratchCard", 50, 2,
+                    new NeverExpires(),
+                    new WeightBasedShippingBehavior("ScratchCard",10.0));
             cart.add(scratchCard, 3); // Invalid
 
             CheckoutService service = new CheckoutService(new FlatRateShippingFee());

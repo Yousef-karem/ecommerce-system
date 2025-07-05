@@ -1,7 +1,6 @@
 package test.java.shipping;
 
 import org.junit.jupiter.api.Test;
-import src.main.java.model.ShippableProduct;
 import src.main.java.shipping.*;
 
 import java.util.List;
@@ -12,7 +11,7 @@ public class FlatRateShippingFeeTest {
 
     @Test
     void shouldReturn30WhenItemsExist() {
-        Shippable item = new ShippableProduct("TV", 700, 1, 5.0);
+        ShippingBehavior item = new WeightBasedShippingBehavior("TV",0.5);
         ShippingFeeStrategy strategy = new FlatRateShippingFee();
         double fee = strategy.calculate(List.of(item));
         assertEquals(30.0, fee);

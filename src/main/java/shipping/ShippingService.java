@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ShippingService {
-    public static void ship(List<Shippable> items) {
+    public static void ship(List<ShippingBehavior> items) {
         if (items.isEmpty()) return;
 
         System.out.println("** Shipment notice **");
@@ -14,7 +14,7 @@ public class ShippingService {
         Map<String, Integer> counts = new LinkedHashMap<>();
         Map<String, Double> weights = new LinkedHashMap<>();
 
-        for (Shippable item : items) {
+        for (ShippingBehavior item : items) {
             String key = item.getName() + "|" + item.getWeight();
             counts.put(key, counts.getOrDefault(key, 0) + 1);
             weights.put(key, item.getWeight());  // store original weight once

@@ -1,30 +1,54 @@
 package src.main.java.model;
 
-public abstract class Product {
-    String name;
-    double price;
-    int quantity;
-    public Product(String name, double price, int quantity) {
-        this.name = name;
+import src.main.java.expiring.ExpirationBehavior;
+import src.main.java.shipping.ShippingBehavior;
+import src.main.java.shipping.WeightBasedShippingBehavior;
+
+public class Product {
+    private String name;
+    private double price;
+    private int quantity;
+
+    private ExpirationBehavior expirationBehavior;
+    private ShippingBehavior shippingBehavior;
+
+    public Product(String name, double price, int quantity,
+                   ExpirationBehavior expirationBehavior,
+                   ShippingBehavior shippingBehavior) {
+        this.name=name;
         this.price = price;
         this.quantity = quantity;
+        this.expirationBehavior = expirationBehavior;
+        this.shippingBehavior = shippingBehavior;
     }
 
-    public int getQuantity() {return quantity;}
-    public String getName() {return name;}
-    public double getPrice() {return price;}
+    public String getName() {
+        return name;
+    }
 
-    public void addQuantity(int quantity)
-    {
-        this.quantity+=quantity;
+    public double getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 
     public void reduceQuantity(int amount) {
-        if (amount > quantity) throw new IllegalArgumentException("Not enough stock.");
+        if (amount > quantity) {
+            throw new IllegalArgumentException("Not enough stock for: " + name);
+        }
         quantity -= amount;
     }
 
-    // to be overridden
-    public abstract boolean isExpired();
-    public abstract boolean isShippable();
+    public boolean isShippable() {
+        return shippingBehavior.isShippable();
+    }
+
+    public ShippingBehavior getShippingBehavior() {
+        return shippingBehavior;
+    }
+    public ExpirationBehavior getExpirationBehavior() {
+        return expirationBehavior;
+    }
 }

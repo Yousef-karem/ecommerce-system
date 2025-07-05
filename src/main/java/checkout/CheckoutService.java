@@ -1,7 +1,7 @@
 package src.main.java.checkout;
 
 import src.main.java.model.*;
-import src.main.java.shipping.Shippable;
+import src.main.java.shipping.ShippingBehavior;
 import src.main.java.shipping.ShippingFeeStrategy;
 import src.main.java.shipping.ShippingService;
 
@@ -21,12 +21,12 @@ public class CheckoutService {
         }
 
         double subtotal = 0;
-        List<Shippable> shippableItems = new ArrayList<>();
+        List<ShippingBehavior> shippableItems = new ArrayList<>();
 
         for (CartItem item : cart.getItems()) {
             Product product = item.getProduct();
 
-            if (product.isExpired()) {
+            if (product.getExpirationBehavior().isExpired()) {
                 throw new IllegalStateException("Product expired: " + product.getName());
             }
 
@@ -36,9 +36,9 @@ public class CheckoutService {
 
             subtotal += item.getTotalPrice();
 
-            if (product.isShippable() && product instanceof Shippable) {
+            if (product.isShippable()) {
                 for (int i = 0; i < item.getQuantity(); i++) {
-                    shippableItems.add((Shippable) product);
+                    shippableItems.add(product.getShippingBehavior());
                 }
             }
         }
