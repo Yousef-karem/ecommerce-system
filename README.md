@@ -1,6 +1,6 @@
 # E-Commerce System
 
-This is a Java-based Object-Oriented Programming (OOP) project built for the [Fawry Rise Journey Full Stack Internship Challenge](https://fawry-internship.notion.site/22573781f94380039bd8e91e04dbef83?pvs=105).
+This is a Java-based Object-Oriented Programming (OOP) project built for the Fawry Rise Journey Full Stack Internship Challenge.
 
 It simulates a minimal e-commerce system with cart management, checkout processing, expirable products, and shipping support.
 
@@ -8,17 +8,18 @@ It simulates a minimal e-commerce system with cart management, checkout processi
 
 ## Features
 
--  Add products to cart with quantity validation
--  Support for **shippable** and **non-shippable** products
--  Handle **expirable** and **non-expirable** products
--  Customer checkout with balance deduction and validation
--  Receipt generation:
-  - Subtotal
-  - Shipping Fee
-  - Total
-  - Remaining Balance
--  Shipping service with shipment notice and total package weight
--  Full handling of edge cases:
+- Generic `Product` class composed with:
+  - `ShippingBehavior` (e.g., weight-based or no shipping)
+  - `ExpirationBehavior` (e.g., date-based, never expires)
+- Supports shipping items via `ShippingService` using behavior-driven logic
+- Handles expirable and non-expirable products dynamically
+- Customers with balance deduction logic
+- Cart & checkout flow with:
+  - Quantity checks
+  - Expiration checks
+  - Balance validation
+  - Shipping fee via **Strategy Pattern**
+- Robust handling of edge cases:
   - Empty cart
   - Insufficient balance
   - Expired products
@@ -29,31 +30,17 @@ It simulates a minimal e-commerce system with cart management, checkout processi
 ##  Technologies Used
 
 - Java 17+
-- JUnit 5 (for testing)
+- JUnit 5 for testing
 - OOP principles:
-  - Abstraction
-  - Inheritance
-  - Encapsulation
-  - Polymorphism
-- Design Pattern:
-  - **Strategy Pattern** (used for shipping fee calculation)
+  - **Composition** over inheritance
+  - **Interface Segregation** for specialized behaviors
+  - **Strategy Pattern** for shipping fees
 
 ---
 ## UML Class Diagram
 
 [UML Diagram](UML.png)
-
-##  Project Structure
-src/
-├── main/
-│ ├── model/  Product, Customer, Cart, CartItem
-│ ├── shipping/  Shippable interface and ShippingService
-│ ├── checkout/  CheckoutService and ShippingFeeStrategy
-│ └── Main.java  Entry point with demo scenarios
-└── test/
-├── model/ JUnit tests for model classes
-├── checkout/ Tests for checkout logic and strategy
-└── shipping/ Tests for shipping fee strategies  
+ 
 ## Example Output
 
 ** Shipment notice **
