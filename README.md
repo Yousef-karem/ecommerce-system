@@ -77,3 +77,6 @@ Remaining Balance 570
 
 Make sure you have JUnit 5 configured.
 
+##  Full Run (Screenshot)
+
+![Output](screenshot.png)
